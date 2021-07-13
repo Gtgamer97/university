@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     /* Courses Start()-----------------------------------------------------------------------------*/
 
     Route::get('/courses', [CourseController::class, 'index']);
-    Route::get('/courseswithclasses', [CourseController::class, 'coursesWithClasses']);
+    Route::get('/courseswithclasses', [CourseController::class, 'coursesWithClasses'])->middleware('admin');
 
     /* Courses End-----------------------------------------------------------------------------*/
 
