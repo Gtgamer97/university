@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
+use App\Http\Requests\LecturerRequest;
 
 class LecturerController extends Controller
 {
@@ -20,12 +21,12 @@ class LecturerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\LecturerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LecturerRequest $request)
     {
-
+        /*
         $request->validate([
             'id'=>'numeric|unique:lecturers',
             //required | allow only alphabets and spaces
@@ -43,6 +44,7 @@ class LecturerController extends Controller
             //required | only alphabets with spaces
             'ranks'=>'required|regex:/^[\pL\s\-]+$/u',
         ]);
+        */
 
         return Lecturer::create($request->all());
     }
