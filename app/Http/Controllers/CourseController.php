@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\CourseWithClassResource;
+use App\Http\Resources\CourseResource;
 
 
 class CourseController extends Controller
@@ -16,7 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::all();
+        return CourseResource::collection(Course::all());
     }
 
     public function coursesWithClasses()
@@ -24,8 +26,7 @@ class CourseController extends Controller
         // $coursesWithClasses = DB::select('SELECT courses.id, courses.name as course_name ,uniclasses.course_id, uniclasses.name as uniclass_name FROM courses RIGHT JOIN uniclasses ON courses.id = uniclasses.course_id');
         // return $coursesWithClasses;
 
-        $coursesWithClasses = Course::with('uniclass')->get();
-        return $coursesWithClasses;
+        return CourseWithClassResource::collection(Course::with('uniclass')->get());
     }
 
 

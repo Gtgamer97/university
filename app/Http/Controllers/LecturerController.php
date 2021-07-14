@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lecturer;
 use Illuminate\Http\Request;
 use App\Http\Requests\LecturerRequest;
+use App\Http\Resources\LecturerResource;
 
 class LecturerController extends Controller
 {
@@ -15,7 +16,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        return Lecturer::all();
+        return LecturerResource::collection(Lecturer::all());
     }
 
     /**
@@ -26,27 +27,8 @@ class LecturerController extends Controller
      */
     public function store(LecturerRequest $request)
     {
-        /*
-        $request->validate([
-            'id'=>'numeric|unique:lecturers',
-            //required | allow only alphabets and spaces
-            'name'=>'required|regex:/^[\pL\s\-]+$/u',
-            //required | allow only alphabets and spaces
-            'surname'=>'required|regex:/^[\pL\s\-]+$/u',
-            'personal_id'=>'required|numeric|unique:lecturers',
-            'phone_number'=>'required|numeric|unique:lecturers',
-            'email'=>'required|unique:lecturers',
-            'address'=>'required',
-            'date_of_birth'=>'required',
-            'sex'=>'required|alpha',
-            //required | without spaces
-            'bank_account_number'=>'required|regex:/^\S*$/u',
-            //required | only alphabets with spaces
-            'ranks'=>'required|regex:/^[\pL\s\-]+$/u',
-        ]);
-        */
-
-        return Lecturer::create($request->all());
+        $newLecturer = Lecturer::create($request->all());
+        return new LecturerResource($newLecturer);
     }
 
     /**
