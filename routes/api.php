@@ -51,8 +51,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     /* Courses Start()-----------------------------------------------------------------------------*/
 
-    Route::get('/courses', [CourseController::class, 'index']);
-    Route::get('/courseswithclasses', [CourseController::class, 'coursesWithClasses'])->middleware('admin');
+    Route::get('/courses', [CourseController::class, 'index'])->middleware('admin');
+    Route::get('/courseswithclasses', [CourseController::class, 'coursesWithClasses'])->middleware('superadmin');
 
     /* Courses End-----------------------------------------------------------------------------*/
 
