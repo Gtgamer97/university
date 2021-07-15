@@ -16,7 +16,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        return LecturerResource::collection(Lecturer::all());
+        return LecturerResource::collection(Lecturer::paginate(3));
     }
 
     /**

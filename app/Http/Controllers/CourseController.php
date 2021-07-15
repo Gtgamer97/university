@@ -18,7 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return CourseResource::collection(Course::all());
+        return CourseResource::collection(Course::paginate(3));
     }
 
     public function coursesWithClasses()
@@ -26,7 +26,7 @@ class CourseController extends Controller
         // $coursesWithClasses = DB::select('SELECT courses.id, courses.name as course_name ,uniclasses.course_id, uniclasses.name as uniclass_name FROM courses RIGHT JOIN uniclasses ON courses.id = uniclasses.course_id');
         // return $coursesWithClasses;
 
-        return CourseWithClassResource::collection(Course::with('uniclass')->get());
+        return CourseWithClassResource::collection(Course::with('uniclass')->paginate(3));
     }
 
 
